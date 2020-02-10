@@ -1,0 +1,47 @@
+@model Spot
+<h2 class="mt-4 mb-4">Add a New Spot @ViewBag.CurrentUser.FirstName!</h2>
+<div class="row">
+    <div class="col-8">
+        <form asp-action="AddNewSpot" asp-controller="Main" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="Name"></label>
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                    <input asp-for="Name" class="form-control" required>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="County"></label>
+                    <span class="text-danger" asp-validation-for="County"></span>
+                    <input asp-for="County" class="form-control" required>
+                </div>
+                    <div class="form-group col-2">
+                    <label asp-for="State"></label>
+                    <span class="text-danger" asp-validation-for="State"></span>
+                    <select asp-for="State" class="form-control">
+                        <option value="ID">ID</option>
+                        <option value="OR">OR</option>
+                        <option value="WA">WA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Directions"></label>
+                <span class="text-danger" asp-validation-for="Directions"></span>
+                <input asp-for="Directions" class="form-control" cols="30" rows="5" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <span class="text-danger" asp-validation-for="Description"></span>
+                <input asp-for="Description" class="form-control" cols="30" rows="5" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image"></label>
+                <span class="text-danger" asp-validation-for="Image"></span>
+                <input asp-for="Image" type="file" class="form-control" required>
+            </div>
+            <div class="d-flex flex-row-reverse mt-4">
+                <input type="submit" value="Add The Spot" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>

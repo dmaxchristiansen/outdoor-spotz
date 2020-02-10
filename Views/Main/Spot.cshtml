@@ -1,0 +1,71 @@
+@model SpotViewModel
+<style>
+    body{
+    background: url('../images/@Model.CurrentSpot.Image') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+     background-size: cover;
+    -o-background-size: cover;
+    }
+
+</style>
+
+<div class="row align-items-center mb-2">
+    <h1 class="display-3 rounded d-inline" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">@Model.CurrentSpot.Name</h1>    
+</div>
+<div class="row align-items-center mb-5">
+    <h3 class="rounded d-inline" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">@Model.CurrentSpot.County County, @Model.CurrentSpot.State</h3>
+</div>
+<div class="row align-items-center">
+    <h1 class="rounded d-inline" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">How do I get there?</h1>
+</div>
+<div class="row align-items-center mb-5">
+    <h4 class="rounded d-inline ml-5" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">@Model.CurrentSpot.Directions</h4>
+</div>
+<div class="row align-items-center">
+    <h1 class="rounded d-inline" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">What is this Spot all about?</h1>
+</div>
+<div class="row align-items-center mb-5">
+    <h4 class="rounded d-inline ml-5" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">@Model.CurrentSpot.Description</h4>
+</div>
+<hr>
+<div class="row mt-5">
+    <div class="col-7">
+        <h3 class="rounded" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">Comments:</h3>
+        <div class="container rounded overflow-auto" style="height: 200px; background-color: rgba(51,58,64,0.7)">
+            @foreach(var comment in @Model.CurrentSpot.Comments)
+            {
+            <div class="rounded row flex-nowrap align-items-center mt-2" style="background-color: rgba(0,0,255,.2)">
+                <div class="col">
+                    <p class="text-light d-inline-block font-weight-bold mb-0">@comment.User.FirstName @comment.User.LastName</p>
+                </div>
+                <div class="col-9">
+                    <p class="text-light mb-0 ml-2">@comment.comment</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="col">
+        <h3 class="rounded" style="background-color: rgba(255,255,255,0.7); padding: 5px 10px;">Post a Comment:</h3>
+        <form asp-action="PostComment" asp-controller="Main" asp-route-spotid="@Model.CurrentSpot.SpotId" method="post">
+            <div class="form-group">
+                <input asp-for="NewComment.comment" class="form-control" required>
+            </div>
+            <div class="d-flex justify-content-end align-items-center form-group">
+                <button type="submit" class="btn btn-primary ml-2 btn-lg">Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+@if (@ViewBag.CurrentUser.UserId == @Model.CurrentSpot.CreatorId) 
+    {
+        <div class="row align-items-center mt-5">
+
+                <h4 class="rounded d-inline mb-0 bg-danger text-light">Hey yo @ViewBag.CurrentUser.FirstName! You created this Spot. Do you wan to delete it mang?</h4>
+
+
+                <a asp-action="DeleteSpot" asp-controller="Main" asp-route-spotid="@Model.CurrentSpot.SpotId" class="btn btn-danger btn-lg ml-5">Delete</a>
+
+        </div>
+    }

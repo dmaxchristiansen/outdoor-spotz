@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+@model LoginViewModel
+
+<div class="container">
+    <h1 class="display-1 text-center mb-0">Welcome to OutdoorSpotz!</h1>
+    <h2 class="text-center text-light mb-5 rounded" style="background-color: rgba(0,0,255,.8)">Your Guide to Cool Outdoor Places in Idaho, Oregon & Washington</h2>
+        <form asp-action="Register" asp-controller="Login" method="post">
+            <div class="form-row top">
+                <div class="form-group col-md-6">
+                    <h5 class="text-light mb-0"><label asp-for="NewUser.FirstName"></label></h5>
+                    <span class="text-danger" asp-validation-for="NewUser.FirstName"></span>
+                    <input asp-for="NewUser.FirstName" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <h5 class="text-light mb-0"><label asp-for="NewUser.LastName"></label></h5>
+                    <span class="text-danger" asp-validation-for="NewUser.LastName"></span>
+                    <input asp-for="NewUser.LastName" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <h5 class="text-light mb-0"><label asp-for="NewUser.Email"></label></h5>
+                <span class="text-danger" asp-validation-for="NewUser.Email"></span>
+                <input asp-for="NewUser.Email" class="form-control">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <h5 class="text-light mb-0"><label asp-for="NewUser.Password"></label></h5>
+                    <span class="text-danger" asp-validation-for="NewUser.Password"></span>
+                    <input asp-for="NewUser.Password" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <h5 class="text-light mb-0"><label asp-for="NewUser.Confirm"></label></h5>
+                    <span class="text-danger" asp-validation-for="NewUser.Confirm"></span>
+                    <input asp-for="NewUser.Confirm" class="form-control">
+                </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Join Now" class="btn btn-success">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

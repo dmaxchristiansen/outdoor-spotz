@@ -1,0 +1,95 @@
+@model List<Spot>
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<h1 class="display-2 text-center">Welcome @ViewBag.CurrentUser.FirstName!</h1>
+<hr>
+<h1 class="display-3 text-center">Idaho</h1>
+<hr>
+<div class="card-deck">
+@foreach(var spot in @Model)
+{
+    @if(spot.State == "ID")
+    {
+        <div class="card">
+            <img src="~/images/@spot.Image" class="card-img-top" alt="">
+            <div class="card-body">
+                <a asp-action="Spot" asp-controller="Main" asp-route-spotid="@spot.SpotId"><h5 class="card-title">@spot.Name</h5></a>
+                <p class="card-text">@spot.County County, @spot.State</p>
+            </div>
+            <div class="card-footer">
+                @if(ViewBag.CurrentUser.UserId == @spot.CreatorId)
+                {
+                    <small class="text-muted">Added by You on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                }
+                else
+                {
+                    <small class="text-muted">Added by @spot.Creator.FirstName on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                    
+                }
+            </div>
+        </div>
+    }
+}
+</div>
+<hr>
+<h1 class="display-3 text-center">Oregon</h1>
+<hr>
+<div class="card-deck">
+@foreach(var spot in @Model)
+{
+    @if(spot.State == "OR")
+    {
+        <div class="card">
+            <img src="~/images/@spot.Image" class="card-img-top" alt="">
+            <div class="card-body">
+                <a asp-action="Spot" asp-controller="Main" asp-route-spotid="@spot.SpotId"><h5 class="card-title">@spot.Name</h5></a>
+                <p class="card-text">@spot.County County, @spot.State</p>
+            </div>
+            <div class="card-footer">
+                @if(ViewBag.CurrentUser.UserId == @spot.CreatorId)
+                {
+                    <small class="text-muted">Added by You on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                }
+                else
+                {
+                    <small class="text-muted">Added by @spot.Creator.FirstName on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                    
+                }
+            </div>
+        </div>
+    }
+}
+</div>
+<hr>
+<h1 class="display-3 text-center">Washington</h1>
+<hr>
+<div class="card-deck">
+@foreach(var spot in @Model)
+{
+    @if(spot.State == "WA")
+    {
+        <div class="card">
+            <img src="~/images/@spot.Image" class="card-img-top" alt="">
+            <div class="card-body">
+                <a asp-action="Spot" asp-controller="Main" asp-route-spotid="@spot.SpotId"><h5 class="card-title">@spot.Name</h5></a>
+                <p class="card-text">@spot.County County, @spot.State</p>
+            </div>
+            <div class="card-footer">
+                @if(ViewBag.CurrentUser.UserId == @spot.CreatorId)
+                {
+                    <small class="text-muted">Added by You on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                }
+                else
+                {
+                    <small class="text-muted">Added by @spot.Creator.FirstName on @spot.CreatedAt.ToString("MMMM d, yyy")</small>
+                    
+                }
+            </div>
+        </div>
+    }
+}
+</div>
+
